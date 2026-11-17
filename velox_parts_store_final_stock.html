@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELOX PARTS - Repuestos de Alta Gama para Motocicletas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#070a0f',
+                            card: '#0f141f',
+                            border: '#1a2333',
+                            accent: '#00e5ff',
+                            accentHover: '#00b8cc',
+                            silver: '#8a99ad'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- QRCode Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #070a0f; color: #f1f5f9; }
+        .glow-cyan { box-shadow: 0 0 25px rgba(0, 229, 255, 0.25); }
+        .glow-cyan-sm { box-shadow: 0 0 12px rgba(0, 229, 255, 0.15); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-panel { background: rgba(15, 20, 31, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(26, 35, 51, 0.8); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-accent selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+            <!-- LOGO & BRAND -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="switchMainTab('catalog')">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-accent to-blue-600 flex items-center justify-center text-black font-black text-xl shadow-lg glow-cyan group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-motorcycle"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black tracking-wider text-white flex items-center gap-1.5">
+                        VELOX <span class="text-brand-accent">PARTS</span>
+                    </h1>
+                    <p class="text-[10px] text-brand-silver font-bold tracking-widest uppercase">Repuestos & Performance Motos</p>
+                </div>
+            </div>
+
+            <!-- NAVIGATION TABS -->
+            <nav class="flex items-center space-x-2 sm:space-x-3">
+                <button onclick="switchMainTab('catalog')" id="tab-catalog-btn" class="px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-brand-accent text-black shadow-lg">
+                    <i class="fa-solid fa-store"></i> <span class="hidden sm:inline">Catálogo</span>
+                </button>
+                <button onclick="switchMainTab('wishlist')" id="tab-wishlist-btn" class="relative px-3.5 py-2.5 rounded-xl text-xs font-bold text-brand-silver hover:text-white transition flex items-center gap-2 bg-brand-card border border-brand-border">
+                    <i class="fa-solid fa-heart text-red-400"></i> <span class="hidden md:inline">Favoritos</span>
+                    <span id="wishlist-badge-count" class="bg-red-500 text-white font-extrabold text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+                <button onclick="switchMainTab('admin')" id="tab-admin-btn" class="px-4 py-2.5 rounded-xl text-xs font-bold text-brand-silver hover:text-white transition flex items-center gap-2 bg-brand-card border border-brand-border">
+                    <i class="fa-solid fa-user-shield text-brand-accent"></i> <span class="hidden sm:inline">Administrador</span>
+                </button>
+                <button onclick="toggleCartModal(true)" class="relative px-4 py-2.5 bg-brand-card border border-brand-border rounded-xl text-xs font-bold text-white hover:border-brand-accent transition flex items-center gap-2 shadow-md">
+                    <i class="fa-solid fa-cart-shopping text-brand-accent"></i>
+                    <span id="cart-badge-count" class="bg-brand-accent text-black font-extrabold text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
+
+        <!-- CATALOG TAB -->
+        <section id="tab-catalog" class="space-y-6">
+            <!-- HERO BANNER -->
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-brand-card to-slate-900 border border-brand-border p-6 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
+                <div class="space-y-4 max-w-xl text-center lg:text-left">
+                    <span class="px-3.5 py-1.5 bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-extrabold rounded-full inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-brand-accent"></i> Alta Calidad y Durabilidad Garantizada
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                        REPUESTOS DE ÉLITE PARA TU <span class="text-brand-accent">MOTOCICLETA</span>
+                    </h2>
+                    <p class="text-brand-silver text-xs sm:text-sm leading-relaxed">
+                        Explora nuestro catálogo con zoom de alta definición, especificaciones técnicas completas y compatibilidad exacta por marca y modelo.
+                    </p>
+                </div>
+
+                <!-- INTERACTIVE FILTERS & SEARCH -->
+                <div class="w-full lg:w-96 space-y-3.5 bg-slate-950/90 p-5 rounded-2xl border border-brand-border backdrop-blur-md shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs text-brand-silver font-extrabold uppercase tracking-wider">Búsqueda Inteligente</label>
+                        <span class="text-[10px] text-brand-accent font-bold" id="product-counter-label">0 referencias</span>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="catalog-search" oninput="handleSearch(this.value)" placeholder="Buscar por SKU, nombre o marca..." class="w-full bg-slate-900 border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent transition">
+                        <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3 text-brand-silver text-xs"></i>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORIES FILTER -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar" id="categories-container">
+                <!-- Dynamic categories -->
+            </div>
+
+            <!-- PRODUCTS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
+                <!-- Dynamic products -->
+            </div>
+        </section>
+
+        <!-- WISHLIST TAB -->
+        <section id="tab-wishlist" class="hidden space-y-6">
+            <div class="flex items-center justify-between border-b border-brand-border pb-4">
+                <div>
+                    <h2 class="text-2xl font-black text-white flex items-center gap-2">
+                        <i class="fa-solid fa-heart text-red-400"></i> Tus Repuestos Favoritos
+                    </h2>
+                    <p class="text-brand-silver text-xs">Guarda las referencias que te interesan para comprarlas cuando desees.</p>
+                </div>
+                <button onclick="clearWishlist()" class="px-3.5 py-2 bg-slate-900 hover:bg-red-950/50 text-red-400 border border-red-900/40 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-trash-can"></i> Vaciar Favoritos
+                </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="wishlist-grid">
+                <!-- Dynamic wishlist items -->
+            </div>
+        </section>
+
+        <!-- ADMIN TAB -->
+        <section id="tab-admin" class="hidden space-y-6">
+            <!-- ADMIN LOGIN SCREEN -->
+            <div id="admin-login-card" class="max-w-md mx-auto bg-brand-card border border-brand-border p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6 my-12">
+                <div class="text-center space-y-2">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-accent/10 border border-brand-accent/30 text-brand-accent flex items-center justify-center mx-auto text-2xl glow-cyan-sm">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white">Acceso Administrativo Velox</h3>
+                    <p class="text-xs text-brand-silver">Ingresa tus credenciales de seguridad para gestionar el inventario.</p>
+                </div>
+                
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-brand-silver uppercase tracking-wider">Usuario</label>
+                        <input type="text" id="admin-user" required placeholder="Bryan_Ra" class="w-full bg-slate-900 border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brand-accent">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-brand-silver uppercase tracking-wider">Contraseña</label>
+                        <input type="password" id="admin-pass" required placeholder="••••••••" class="w-full bg-slate-900 border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brand-accent">
+                    </div>
+                    <div id="login-error" class="hidden text-xs text-red-400 font-bold text-center bg-red-950/40 p-2.5 rounded-xl border border-red-800/40">
+                        Credenciales incorrectas. Verifica usuario y clave.
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-brand-accent text-black font-extrabold rounded-xl shadow-lg glow-cyan hover:bg-brand-accentHover transition text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-key"></i> Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+
+            <!-- ADMIN DASHBOARD PANEL -->
+            <div id="admin-panel" class="hidden space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-border pb-4">
+                    <div>
+                        <h2 class="text-2xl font-black text-white flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-brand-accent"></i> Panel de Control Velox
+                        </h2>
+                        <p class="text-brand-silver text-xs">Sesión activa como: <strong class="text-brand-accent" id="admin-user-display">Bryan_Ra</strong></p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="openProductEditModal(null)" class="px-4 py-2.5 bg-gradient-to-r from-brand-accent to-blue-500 text-black font-black rounded-xl text-xs hover:brightness-110 transition shadow-lg glow-cyan-sm flex items-center gap-2">
+                            <i class="fa-solid fa-plus-circle text-sm"></i> Agregar Nueva Referencia
+                        </button>
+                        <button onclick="handleAdminLogout()" class="px-3.5 py-2.5 bg-red-950/50 border border-red-800/60 text-red-400 rounded-xl text-xs font-bold hover:bg-red-900/60 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CONFIGURACIÓN DE ENVÍO -->
+                <div class="bg-brand-card border border-brand-border p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-accent/10 border border-brand-accent/30 text-brand-accent flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-truck-ramp-box"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-white text-sm">Configuración de Envío a Domicilio</h4>
+                            <p class="text-xs text-brand-silver">Habilita o deshabilita el cobro de flete y ajusta la tarifa global.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="admin-shipping-enable" onchange="toggleShippingSetting(this.checked)" class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-accent"></div>
+                            <span class="ml-2 text-xs font-bold text-gray-300" id="admin-shipping-status-label">Activo</span>
+                        </label>
+                        <div class="flex items-center space-x-1.5 bg-slate-900 border border-brand-border px-3 py-1.5 rounded-xl">
+                            <span class="text-xs text-brand-silver font-bold">$</span>
+                            <input type="number" id="admin-shipping-cost" onchange="updateShippingCost(this.value)" placeholder="15000" class="w-24 bg-transparent text-xs text-white font-extrabold focus:outline-none">
+                            <span class="text-[10px] text-brand-silver">COP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GESTIÓN DE CATEGORÍAS (ADMIN) -->
+                <div class="bg-brand-card border border-brand-border p-5 rounded-2xl space-y-3 shadow-lg">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-tags text-brand-accent"></i>
+                        <h4 class="font-extrabold text-white text-sm">Gestión de Categorías</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2 items-center" id="admin-categories-tags">
+                        <!-- Dynamic Category Badges -->
+                    </div>
+                    <div class="flex items-center gap-2 max-w-md pt-2">
+                        <input type="text" id="new-cat-input" placeholder="Nueva categoría..." class="flex-1 bg-slate-900 border border-brand-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-accent">
+                        <button onclick="addCategory()" class="px-4 py-2 bg-brand-accent text-black font-extrabold rounded-xl text-xs hover:bg-brand-accentHover transition flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADMIN SUB-TABS -->
+                <div class="flex space-x-3 border-b border-brand-border pb-2">
+                    <button onclick="switchAdminSubTab('inventory')" id="subtab-inventory-btn" class="px-4 py-2.5 text-xs font-bold text-brand-accent border-b-2 border-brand-accent transition flex items-center gap-2">
+                        <i class="fa-solid fa-boxes-stacked"></i> Inventario de Repuestos (<span id="admin-products-count">0</span>)
+                    </button>
+                    <button onclick="switchAdminSubTab('orders')" id="subtab-orders-btn" class="px-4 py-2.5 text-xs font-bold text-gray-400 hover:text-white transition flex items-center gap-2">
+                        <i class="fa-solid fa-truck-fast"></i> Gestionar Pedidos (<span id="admin-orders-count">0</span>)
+                    </button>
+                </div>
+
+                <!-- ADMIN SUBTAB: INVENTARIO -->
+                <div id="admin-subtab-inventory" class="space-y-4">
+                    <div class="overflow-x-auto rounded-2xl border border-brand-border bg-brand-card">
+                        <table class="w-full text-left text-xs text-brand-silver">
+                            <thead class="bg-slate-900 text-white font-extrabold uppercase border-b border-brand-border">
+                                <tr>
+                                    <th class="p-3.5">Imágenes</th>
+                                    <th class="p-3.5">SKU / Referencia</th>
+                                    <th class="p-3.5">Nombre Repuesto</th>
+                                    <th class="p-3.5">Categoría</th>
+                                    <th class="p-3.5">Marca</th>
+                                    <th class="p-3.5">Precio</th>
+                                    <th class="p-3.5">Stock</th>
+                                    <th class="p-3.5 text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inventory-table-body" class="divide-y divide-brand-border/60">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ADMIN SUBTAB: PEDIDOS -->
+                <div id="admin-subtab-orders" class="hidden space-y-4">
+                    <div class="overflow-x-auto rounded-2xl border border-brand-border bg-brand-card">
+                        <table class="w-full text-left text-xs text-brand-silver">
+                            <thead class="bg-slate-900 text-white font-extrabold uppercase border-b border-brand-border">
+                                <tr>
+                                    <th class="p-3.5"># Orden</th>
+                                    <th class="p-3.5">Fecha</th>
+                                    <th class="p-3.5">Cliente</th>
+                                    <th class="p-3.5">Ciudad / Dirección</th>
+                                    <th class="p-3.5">Método Pago</th>
+                                    <th class="p-3.5">Total</th>
+                                    <th class="p-3.5">Estado</th>
+                                    <th class="p-3.5 text-right">Guía Despacho</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-table-body" class="divide-y divide-brand-border/60">
+                                <!-- Dynamic order rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="toggleCartModal(false)"></div>
+        <div class="absolute right-0 top-0 bottom-0 max-w-md w-full bg-brand-card border-l border-brand-border flex flex-col justify-between shadow-2xl p-6 overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between border-b border-brand-border pb-3.5">
+                    <h3 class="text-sm font-black text-white flex items-center gap-2 uppercase tracking-wide">
+                        <i class="fa-solid fa-cart-shopping text-brand-accent"></i> Resumen de Compra
+                    </h3>
+                    <button onclick="toggleCartModal(false)" class="text-gray-400 hover:text-white p-1">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                
+                <div id="cart-items-list" class="py-3 space-y-2.5 max-h-[40vh] overflow-y-auto pr-1">
+                    <!-- Dynamic cart items -->
+                </div>
+            </div>
+
+            <!-- CHECKOUT FORM & TOTAL -->
+            <div class="border-t border-brand-border pt-4 space-y-3.5">
+                <div class="space-y-1 text-xs">
+                    <div class="flex justify-between items-center text-brand-silver">
+                        <span>Subtotal Repuestos:</span>
+                        <span class="font-bold text-white" id="cart-subtotal-price">$0</span>
+                    </div>
+                    <div class="flex justify-between items-center text-brand-silver">
+                        <span>Costo de Envío:</span>
+                        <span class="font-bold text-brand-accent" id="cart-shipping-price">Gratis</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm border-t border-brand-border/60 pt-2">
+                        <span class="font-bold text-white">Total a Pagar:</span>
+                        <span class="text-xl font-black text-brand-accent" id="cart-total-price">$0</span>
+                    </div>
+                </div>
+
+                <!-- DAVIPHONE / BREB -->
+                <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-xl p-3 text-center space-y-1">
+                    <p class="text-[11px] font-bold text-emerald-400 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-money-bill-transfer"></i> Pago con Breb y Daviplata: <span class="font-black underline">3115092400</span>
+                    </p>
+                    <p class="text-[10px] text-gray-300">Al confirmar serás redirigido a WhatsApp con tu pedido listo.</p>
+                </div>
+
+                <div class="space-y-2.5 border-t border-brand-border pt-3">
+                    <h4 class="text-[11px] font-extrabold text-white uppercase tracking-wider">Datos de Entrega</h4>
+                    <input type="text" id="cust-name" placeholder="Nombre y Apellidos *" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    <input type="text" id="cust-phone" placeholder="Teléfono / WhatsApp *" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    <input type="text" id="cust-city" placeholder="Ciudad y Departamento *" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    <input type="text" id="cust-address" placeholder="Dirección completa de entrega *" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    <select id="cust-payment" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                        <option value="Daviplata / Breb (3115092400)">Daviplata / Breb (3115092400)</option>
+                        <option value="Transferencia Nequi / Bancolombia">Transferencia Nequi / Bancolombia</option>
+                        <option value="Pago Contraentrega (Efectivo)">Pago Contraentrega (Efectivo)</option>
+                    </select>
+                </div>
+
+                <button onclick="processOrderCheckout()" class="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold rounded-xl shadow-lg transition uppercase tracking-wider text-xs flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Finalizar Compra por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL MODAL (HIGH-RES DUAL VIEW & ZOOM LIGHTBOX) -->
+    <div id="product-detail-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeProductDetailModal()"></div>
+        <div class="relative w-full max-w-3xl bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-8 shadow-2xl z-10 text-xs space-y-6">
+            <button onclick="closeProductDetailModal()" class="absolute right-5 top-5 text-gray-400 hover:text-white z-20 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="product-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- ADMIN PRODUCT EDIT MODAL -->
+    <div id="admin-product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeProductEditModal()"></div>
+        <div class="relative w-full max-w-xl bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-8 shadow-2xl z-10 space-y-4 overflow-y-auto max-h-[90vh]">
+            <div class="flex items-center justify-between border-b border-brand-border pb-3">
+                <h3 class="font-extrabold text-white text-base flex items-center gap-2" id="admin-modal-title">
+                    <i class="fa-solid fa-box-archive text-brand-accent"></i> Agregar Nueva Referencia
+                </h3>
+                <button onclick="closeProductEditModal()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handleProductFormSubmit(event)" class="space-y-4">
+                <input type="hidden" id="edit-prod-id">
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-[11px] font-bold text-brand-silver">SKU / Referencia *</label>
+                        <input type="text" id="edit-prod-sku" required placeholder="VP-ARR-01" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-brand-silver">Categoría *</label>
+                        <select id="edit-prod-cat" required class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                            <!-- Options populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-[11px] font-bold text-brand-silver">Nombre de la Referencia *</label>
+                    <input type="text" id="edit-prod-name" required placeholder="Ej: Kit de Arrastre Racing 520" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div>
+                        <label class="text-[11px] font-bold text-brand-silver">Marca *</label>
+                        <input type="text" id="edit-prod-brand" required placeholder="Velox" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-brand-silver">Moto *</label>
+                        <input type="text" id="edit-prod-moto" required placeholder="Pulsar NS 200" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-brand-silver">Precio ($) *</label>
+                        <input type="number" id="edit-prod-price" required placeholder="185000" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-brand-silver">Stock (u) *</label>
+                        <input type="number" id="edit-prod-stock" required placeholder="15" class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                </div>
+
+                <div class="border border-brand-border bg-slate-950/60 p-4 rounded-2xl space-y-3">
+                    <h4 class="text-xs font-bold text-brand-accent flex items-center gap-2">
+                        <i class="fa-solid fa-images"></i> URLs de Imágenes de Alta Definición
+                    </h4>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-brand-silver uppercase">Imagen Principal (URL) *</label>
+                        <input type="url" id="edit-prod-img1" required placeholder="https://images.unsplash.com/..." class="w-full bg-slate-900 border border-brand-border rounded-xl p-2 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-brand-silver uppercase">Imagen Secundaria / Detalle (URL) *</label>
+                        <input type="url" id="edit-prod-img2" required placeholder="https://images.unsplash.com/..." class="w-full bg-slate-900 border border-brand-border rounded-xl p-2 text-xs text-white focus:border-brand-accent outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-[11px] font-bold text-brand-silver">Descripción del Repuesto</label>
+                    <textarea id="edit-prod-desc" rows="3" placeholder="Especificaciones técnicas y compatibilidad..." class="w-full bg-slate-900 border border-brand-border rounded-xl p-2.5 text-xs text-white focus:border-brand-accent outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeProductEditModal()" class="px-4 py-2.5 bg-slate-800 text-brand-silver rounded-xl text-xs font-bold hover:text-white transition">Cancelar</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-accent text-black font-extrabold rounded-xl text-xs glow-cyan-sm hover:bg-brand-accentHover transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Referencia
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SHIPPING LABEL MODAL (GUÍA DESPACHO) -->
+    <div id="shipping-label-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeShippingLabelModal()"></div>
+        <div class="relative w-full max-w-xl bg-white text-slate-900 rounded-3xl p-6 shadow-2xl z-10 space-y-4">
+            <button onclick="closeShippingLabelModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-800">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="shipping-label-content"></div>
+            <div class="flex justify-end gap-3 pt-3 border-t border-slate-200">
+                <button onclick="printShippingLabel()" class="px-5 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> Imprimir Guía de Envío
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-border py-8 text-center text-xs text-brand-silver mt-12 space-y-3">
+        <div class="flex flex-wrap items-center justify-center gap-6 font-medium text-gray-300">
+            <a href="mailto:veloxparts@gamil.com" class="hover:text-brand-accent transition flex items-center gap-2">
+                <i class="fa-solid fa-envelope text-brand-accent"></i> veloxparts@gamil.com
+            </a>
+            <a href="https://wa.me/573115092400" target="_blank" class="hover:text-emerald-400 transition flex items-center gap-2 text-emerald-400 font-bold">
+                <i class="fa-brands fa-whatsapp text-lg"></i> 3115092400
+            </a>
+        </div>
+        <p class="text-[11px] text-gray-500">© 2026 VELOX PARTS - Repuestos & Performance. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const INITIAL_PRODUCTS = [
+            {
+                id: 1,
+                sku: 'VP-KAR-01',
+                name: 'Kit de Arrastre Racing 520 Chain & Sprockets',
+                category: 'Transmisión',
+                brand: 'Velox Performance',
+                moto: 'Pulsar NS / RS',
+                price: 185000,
+                stock: 12,
+                rating: 4.9,
+                img1: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80',
+                img2: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80',
+                description: 'Kit de arrastre reforzado paso 520 con cadena oring dorada y catalina de acero al carbono de alta resistencia. Máxima durabilidad garantizada.'
+            },
+            {
+                id: 2,
+                sku: 'VP-PF-02',
+                name: 'Disco y Pastillas de Freno Cerámicas High Stop',
+                category: 'Frenos',
+                brand: 'Brembo Racing',
+                moto: 'Yamaha FZ / MT',
+                price: 65000,
+                stock: 25,
+                rating: 4.8,
+                img1: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=700&q=80',
+                img2: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80',
+                description: 'Compuesto sinterizado y disco ventilado para un frenado superior en seco o mojado sin desvanecimiento térmico.'
+            },
+            {
+                id: 3,
+                sku: 'VP-CIL-03',
+                name: 'Cilindro y Pistón Racing 150cc a 200cc Modified',
+                category: 'Motor',
+                brand: 'Velox Performance',
+                moto: 'AKT / Discover',
+                price: 290000,
+                stock: 8,
+                rating: 5.0,
+                img1: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=700&q=80',
+                img2: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80',
+                description: 'Kit completo de potencia con camisa nikasil, pistón forjado y anillos de baja fricción para mayor aceleración.'
+            },
+            {
+                id: 4,
+                sku: 'VP-LED-04',
+                name: 'Exploradoras LED Auxiliares Dual Beam 60W',
+                category: 'Iluminación',
+                brand: 'NightHawk',
+                moto: 'Suzuki Gixxer',
+                price: 110000,
+                stock: 18,
+                rating: 4.7,
+                img1: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=700&q=80',
+                img2: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80',
+                description: 'Luces exploradoras impermeables IP68 con conmutador para luz blanca y amarilla profunda para niebla y carretera nocturna.'
+            }
+        ];
+
+        let state = {
+            categories: JSON.parse(localStorage.getItem('velox_categories')) || ['Todos', 'Transmisión', 'Frenos', 'Motor', 'Iluminación', 'Suspensión', 'Accesorios'],
+            activeCategory: 'Todos',
+            searchQuery: '',
+            
+            cart: JSON.parse(localStorage.getItem('velox_cart')) || [],
+            wishlist: JSON.parse(localStorage.getItem('velox_wishlist')) || [],
+            products: (() => {
+                try {
+                    const saved = JSON.parse(localStorage.getItem('velox_products'));
+                    return (Array.isArray(saved) && saved.length > 0) ? saved : INITIAL_PRODUCTS;
+                } catch (e) {
+                    return INITIAL_PRODUCTS;
+                }
+            })(),
+            shippingConfig: JSON.parse(localStorage.getItem('velox_shipping_config')) || {
+                enabled: true,
+                cost: 15000
+            },
+            orders: JSON.parse(localStorage.getItem('velox_orders')) || [
+                {
+                    id: 'VX-9821',
+                    date: '2026-11-08 14:30',
+                    customer: {
+                        name: 'Carlos Mendoza',
+                        phone: '3124567890',
+                        city: 'Medellín, Ant.',
+                        address: 'Carrera 43A #12-45 Apto 302',
+                        payment: 'Transferencia Bancaria'
+                    },
+                    items: [
+                        { sku: 'VP-KAR-01', name: 'Kit de Arrastre Racing 520', price: 185000, qty: 1 }
+                    ],
+                    shippingCost: 15000,
+                    total: 200000,
+                    status: 'Listo para Despacho'
+                }
+            ],
+            isAdminAuth: sessionStorage.getItem('velox_admin_auth') === 'true',
+            activeAdminSubtab: 'inventory'
+        };
+
+        // --- NAVIGATION & TABS ---
+        function switchMainTab(tabName) {
+            const catalogSec = document.getElementById('tab-catalog');
+            const wishlistSec = document.getElementById('tab-wishlist');
+            const adminSec = document.getElementById('tab-admin');
+            const catalogBtn = document.getElementById('tab-catalog-btn');
+            const wishlistBtn = document.getElementById('tab-wishlist-btn');
+            const adminBtn = document.getElementById('tab-admin-btn');
+
+            catalogSec.classList.add('hidden');
+            wishlistSec.classList.add('hidden');
+            adminSec.classList.add('hidden');
+
+            catalogBtn.className = "px-4 py-2.5 rounded-xl text-xs font-bold text-brand-silver hover:text-white transition flex items-center gap-2 bg-brand-card border border-brand-border";
+            wishlistBtn.className = "relative px-3.5 py-2.5 rounded-xl text-xs font-bold text-brand-silver hover:text-white transition flex items-center gap-2 bg-brand-card border border-brand-border";
+            adminBtn.className = "px-4 py-2.5 rounded-xl text-xs font-bold text-brand-silver hover:text-white transition flex items-center gap-2 bg-brand-card border border-brand-border";
+
+            if (tabName === 'catalog') {
+                catalogSec.classList.remove('hidden');
+                catalogBtn.className = "px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-brand-accent text-black shadow-lg";
+                renderProducts();
+            } else if (tabName === 'wishlist') {
+                wishlistSec.classList.remove('hidden');
+                wishlistBtn.className = "relative px-3.5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-brand-accent text-black shadow-lg";
+                renderWishlist();
+            } else {
+                adminSec.classList.remove('hidden');
+                adminBtn.className = "px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-brand-accent text-black shadow-lg";
+                updateAdminAuthUI();
+            }
+        }
+
+        // --- CATEGORIES & CATALOG RENDER ---
+        function renderCategories() {
+            const container = document.getElementById('categories-container');
+            if (!container) return;
+
+            container.innerHTML = state.categories.map(cat => {
+                const isActive = state.activeCategory === cat;
+                return `
+                    <button onclick="setCategory('${cat}')" class="px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition border ${
+                        isActive 
+                            ? 'bg-brand-accent text-black border-brand-accent shadow-lg glow-cyan-sm' 
+                            : 'bg-brand-card text-brand-silver border-brand-border hover:border-brand-accent hover:text-white'
+                    }">
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+
+            const selectEl = document.getElementById('edit-prod-cat');
+            if (selectEl) {
+                const currentVal = selectEl.value;
+                selectEl.innerHTML = state.categories.filter(c => c !== 'Todos').map(c => `
+                    <option value="${c}">${c}</option>
+                `).join('');
+                if (currentVal) selectEl.value = currentVal;
+            }
+
+            renderAdminCategories();
+        }
+
+        function renderAdminCategories() {
+            const container = document.getElementById('admin-categories-tags');
+            if (!container) return;
+
+            container.innerHTML = state.categories.map(cat => {
+                if (cat === 'Todos') return '';
+                return `
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 border border-brand-border text-xs text-gray-200 rounded-xl font-bold">
+                        ${cat}
+                        <button onclick="deleteCategory('${cat}')" class="text-red-400 hover:text-red-300 ml-1">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </span>
+                `;
+            }).join('');
+        }
+
+        function addCategory() {
+            const input = document.getElementById('new-cat-input');
+            const val = input.value.trim();
+            if (!val) return;
+            if (!state.categories.includes(val)) {
+                state.categories.push(val);
+                localStorage.setItem('velox_categories', JSON.stringify(state.categories));
+                renderCategories();
+                input.value = '';
+            } else {
+                alert('Esta categoría ya existe.');
+            }
+        }
+
+        function deleteCategory(catName) {
+            if (confirm(`¿Eliminar la categoría "${catName}"?`)) {
+                state.categories = state.categories.filter(c => c !== catName);
+                if (state.activeCategory === catName) state.activeCategory = 'Todos';
+                localStorage.setItem('velox_categories', JSON.stringify(state.categories));
+                renderCategories();
+                renderProducts();
+            }
+        }
+
+        function setCategory(cat) {
+            state.activeCategory = cat;
+            renderCategories();
+            renderProducts();
+        }
+
+        function handleSearch(query) {
+            state.searchQuery = query.toLowerCase();
+            renderProducts();
+        }
+
+
+
+        function toggleWishlist(productId) {
+            const idx = state.wishlist.indexOf(productId);
+            if (idx > -1) {
+                state.wishlist.splice(idx, 1);
+            } else {
+                state.wishlist.push(productId);
+            }
+            localStorage.setItem('velox_wishlist', JSON.stringify(state.wishlist));
+            renderProducts();
+            renderWishlist();
+            updateWishlistBadge();
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlist-badge-count');
+            if (badge) badge.innerText = state.wishlist.length;
+        }
+
+        function clearWishlist() {
+            state.wishlist = [];
+            localStorage.setItem('velox_wishlist', JSON.stringify(state.wishlist));
+            renderProducts();
+            renderWishlist();
+            updateWishlistBadge();
+        }
+
+        function renderWishlist() {
+            const grid = document.getElementById('wishlist-grid');
+            if (!grid) return;
+
+            const favProducts = state.products.filter(p => state.wishlist.includes(p.id));
+            if (favProducts.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-brand-silver space-y-3">
+                        <i class="fa-solid fa-heart-crack text-5xl text-slate-700"></i>
+                        <p class="text-sm">No tienes repuestos guardados en favoritos.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = favProducts.map(product => buildProductCard(product)).join('');
+        }
+
+        function buildProductCard(product) {
+            const isFav = state.wishlist.includes(product.id);
+            const stockCount = product.stock !== undefined ? product.stock : 10;
+            return `
+                <div class="group bg-brand-card border border-brand-border rounded-3xl overflow-hidden hover:border-brand-accent/60 transition-all duration-300 flex flex-col justify-between shadow-xl">
+                    <div class="relative w-full h-52 bg-slate-950 overflow-hidden cursor-pointer" onclick="openProductDetailModal(${product.id})">
+                        <img src="${product.img1}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 absolute inset-0">
+                        <img src="${product.img2}" class="w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 absolute inset-0">
+                        
+                        <div class="absolute top-3 left-3 px-2.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-lg text-[10px] font-extrabold text-brand-accent border border-brand-border z-10">
+                            ${product.sku}
+                        </div>
+                        <button onclick="event.stopPropagation(); toggleWishlist(${product.id});" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/90 backdrop-blur-md flex items-center justify-center text-xs border border-brand-border transition ${isFav ? 'text-red-500 border-red-500/50' : 'text-gray-400 hover:text-white'} z-10">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                        <div class="absolute bottom-3 left-3 flex items-center gap-1.5 z-10">
+                            <span class="px-2 py-0.5 bg-brand-accent/20 text-brand-accent rounded-md text-[10px] font-bold border border-brand-accent/30">
+                                Moto: ${product.moto}
+                            </span>
+                            <span class="px-2 py-0.5 bg-slate-900/90 text-emerald-400 rounded-md text-[10px] font-extrabold border border-emerald-500/30">
+                                Stock: ${stockCount} u
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 space-y-3.5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center text-[10px] font-bold text-brand-silver uppercase tracking-wider">
+                                <span>${product.brand}</span>
+                                <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> ${product.rating}</span>
+                            </div>
+                            <h3 class="font-extrabold text-white text-sm line-clamp-2 hover:text-brand-accent cursor-pointer transition" onclick="openProductDetailModal(${product.id})">
+                                ${product.name}
+                            </h3>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-brand-border/60">
+                            <div>
+                                <span class="text-[10px] text-brand-silver block">Precio</span>
+                                <span class="text-base font-black text-brand-accent">$${product.price.toLocaleString('es-CO')}</span>
+                            </div>
+                            <button onclick="addToCart(${product.id})" class="px-3.5 py-2 bg-brand-accent text-black font-extrabold rounded-xl text-xs hover:bg-brand-accentHover transition shadow-lg flex items-center gap-1.5">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const counter = document.getElementById('product-counter-label');
+            if (!grid) return;
+
+            let filtered = state.products.filter(p => {
+                const matchCat = state.activeCategory === 'Todos' || p.category === state.activeCategory;
+                
+                const matchSearch = p.name.toLowerCase().includes(state.searchQuery) || 
+                                    p.sku.toLowerCase().includes(state.searchQuery) ||
+                                    p.brand.toLowerCase().includes(state.searchQuery);
+                return matchCat && matchSearch;
+            });
+
+            if (counter) counter.innerText = `${filtered.length} referencias`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-brand-silver space-y-3">
+                        <i class="fa-solid fa-box-open text-4xl text-slate-700"></i>
+                        <p class="text-sm">No se encontraron repuestos con los filtros seleccionados.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(product => buildProductCard(product)).join('');
+            updateWishlistBadge();
+        }
+
+        // --- SHOPPING CART LOGIC ---
+        function toggleCartModal(open) {
+            const drawer = document.getElementById('cart-drawer');
+            if (open) {
+                drawer.classList.remove('hidden');
+                renderCart();
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        function addToCart(productId) {
+            const product = state.products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = state.cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                state.cart.push({
+                    id: product.id,
+                    sku: product.sku,
+                    name: product.name,
+                    price: product.price,
+                    image: product.img1,
+                    qty: 1
+                });
+            }
+
+            saveCart();
+            renderCart();
+            toggleCartModal(true);
+        }
+
+        function updateCartQty(productId, delta) {
+            const item = state.cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.qty += delta;
+            if (item.qty <= 0) {
+                state.cart = state.cart.filter(i => i.id !== productId);
+            }
+
+            saveCart();
+            renderCart();
+        }
+
+        function removeFromCart(productId) {
+            state.cart = state.cart.filter(item => item.id !== productId);
+            saveCart();
+            renderCart();
+        }
+
+        function saveCart() {
+            localStorage.setItem('velox_cart', JSON.stringify(state.cart));
+        }
+
+        function renderCart() {
+            const countBadge = document.getElementById('cart-badge-count');
+            const totalCount = state.cart.reduce((sum, item) => sum + item.qty, 0);
+            if (countBadge) countBadge.innerText = totalCount;
+
+            const cartList = document.getElementById('cart-items-list');
+            const subtotalPriceEl = document.getElementById('cart-subtotal-price');
+            const shippingPriceEl = document.getElementById('cart-shipping-price');
+            const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (!cartList || !totalPriceEl) return;
+
+            if (state.cart.length === 0) {
+                cartList.innerHTML = `<p class="text-center text-brand-silver text-xs py-8">El carrito está vacío</p>`;
+                if (subtotalPriceEl) subtotalPriceEl.innerText = '$0';
+                if (shippingPriceEl) shippingPriceEl.innerText = '$0';
+                totalPriceEl.innerText = '$0';
+                return;
+            }
+
+            let subtotal = 0;
+            cartList.innerHTML = state.cart.map(item => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                return `
+                    <div class="flex items-center justify-between bg-slate-900/90 p-3 rounded-xl border border-brand-border text-xs gap-3">
+                        <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg border border-brand-border flex-shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-white truncate text-xs">${item.name}</h4>
+                            <span class="text-brand-silver text-[10px] block">${item.sku}</span>
+                            <div class="text-brand-accent font-extrabold text-xs">$${item.price.toLocaleString('es-CO')}</div>
+                        </div>
+                        <div class="flex items-center space-x-1.5 flex-shrink-0">
+                            <button onclick="updateCartQty(${item.id}, -1)" class="w-6 h-6 rounded bg-slate-800 text-white font-bold hover:bg-brand-accent hover:text-black transition flex items-center justify-center text-xs">-</button>
+                            <span class="font-bold text-white text-xs w-5 text-center">${item.qty}</span>
+                            <button onclick="updateCartQty(${item.id}, 1)" class="w-6 h-6 rounded bg-slate-800 text-white font-bold hover:bg-brand-accent hover:text-black transition flex items-center justify-center text-xs">+</button>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-300 ml-1 p-1 text-xs" title="Eliminar">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const shippingFee = state.shippingConfig.enabled ? state.shippingConfig.cost : 0;
+            const grandTotal = subtotal + shippingFee;
+
+            if (subtotalPriceEl) subtotalPriceEl.innerText = '$' + subtotal.toLocaleString('es-CO');
+            if (shippingPriceEl) {
+                shippingPriceEl.innerText = state.shippingConfig.enabled ? '$' + shippingFee.toLocaleString('es-CO') : 'Gratis';
+            }
+            totalPriceEl.innerText = '$' + grandTotal.toLocaleString('es-CO');
+        }
+
+        // --- SHIPPING COST CONTROLS IN ADMIN ---
+        function toggleShippingSetting(enabled) {
+            state.shippingConfig.enabled = enabled;
+            localStorage.setItem('velox_shipping_config', JSON.stringify(state.shippingConfig));
+            const statusLabel = document.getElementById('admin-shipping-status-label');
+            if (statusLabel) statusLabel.innerText = enabled ? 'Activo' : 'Desactivado';
+            renderCart();
+        }
+
+        function updateShippingCost(value) {
+            const cost = parseFloat(value) || 0;
+            state.shippingConfig.cost = cost;
+            localStorage.setItem('velox_shipping_config', JSON.stringify(state.shippingConfig));
+            renderCart();
+        }
+
+        function syncShippingAdminUI() {
+            const check = document.getElementById('admin-shipping-enable');
+            const costInput = document.getElementById('admin-shipping-cost');
+            const statusLabel = document.getElementById('admin-shipping-status-label');
+
+            if (check) check.checked = state.shippingConfig.enabled;
+            if (costInput) costInput.value = state.shippingConfig.cost;
+            if (statusLabel) statusLabel.innerText = state.shippingConfig.enabled ? 'Activo' : 'Desactivado';
+        }
+
+        function processOrderCheckout() {
+            if (state.cart.length === 0) {
+                alert('Agrega al menos un repuesto al carrito.');
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const city = document.getElementById('cust-city').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const payment = document.getElementById('cust-payment').value;
+
+            if (!name || !phone || !city || !address) {
+                alert('Por favor completa todos los datos de entrega.');
+                return;
+            }
+
+            const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shippingFee = state.shippingConfig.enabled ? state.shippingConfig.cost : 0;
+            const total = subtotal + shippingFee;
+            const orderId = 'VX-' + Math.floor(1000 + Math.random() * 9000);
+
+            const newOrder = {
+                id: orderId,
+                date: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                customer: { name, phone, city, address, payment },
+                items: [...state.cart],
+                shippingCost: shippingFee,
+                total: total,
+                status: 'Pendiente'
+            };
+
+            state.orders.unshift(newOrder);
+            localStorage.setItem('velox_orders', JSON.stringify(state.orders));
+
+            let itemsSummary = state.cart.map(i => `• ${i.name} (${i.sku}) x${i.qty} - $${(i.price * i.qty).toLocaleString('es-CO')}`).join('\n');
+            let waMessage = `*NUEVO PEDIDO VELOX PARTS #${orderId}*
+
+*Cliente:* ${name}
+*Teléfono:* ${phone}
+*Ciudad:* ${city}
+*Dirección:* ${address}
+*Método de Pago:* ${payment}
+
+*REPUESTOS SOLICITADOS:*
+${itemsSummary}
+
+*Subtotal:* $${subtotal.toLocaleString('es-CO')}
+*Envío:* $${shippingFee.toLocaleString('es-CO')}
+*TOTAL A PAGAR:* $${total.toLocaleString('es-CO')}
+
+_Hola, quiero confirmar mi pedido para el soporte de pago Breb/Daviplata 3115092400._`;
+
+            const waUrl = `https://wa.me/573115092400?text=${encodeURIComponent(waMessage)}`;
+
+            state.cart = [];
+            saveCart();
+            renderCart();
+            toggleCartModal(false);
+
+            window.open(waUrl, '_blank');
+            if (state.isAdminAuth) renderOrders();
+        }
+
+        // --- PRODUCT DETAIL MODAL (HIGH-RES DUAL VIEW & LIGHTBOX) ---
+        let activeModalProduct = null;
+
+        function openProductDetailModal(productId) {
+            const product = state.products.find(p => p.id === productId);
+            if (!product) return;
+            activeModalProduct = product;
+
+            const modal = document.getElementById('product-detail-modal');
+            const content = document.getElementById('product-modal-content');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3">
+                        <div class="aspect-4/3 rounded-2xl bg-slate-950 overflow-hidden border border-brand-border relative group shadow-xl">
+                            <img id="modal-main-img" src="${product.img1}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="document.getElementById('modal-main-img').src='${product.img1}'" class="w-20 h-20 rounded-xl overflow-hidden border-2 border-brand-accent/60 hover:border-brand-accent transition shadow-md">
+                                <img src="${product.img1}" class="w-full h-full object-cover">
+                            </button>
+                            <button onclick="document.getElementById('modal-main-img').src='${product.img2}'" class="w-20 h-20 rounded-xl overflow-hidden border border-brand-border hover:border-brand-accent transition shadow-md">
+                                <img src="${product.img2}" class="w-full h-full object-cover">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 flex flex-col justify-between">
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 bg-brand-accent/10 border border-brand-accent/30 text-brand-accent font-extrabold rounded-lg text-[10px]">
+                                    SKU: ${product.sku}
+                                </span>
+                                <span class="text-yellow-400 font-bold text-xs flex items-center gap-1">
+                                    <i class="fa-solid fa-star"></i> ${product.rating} / 5.0
+                                </span>
+                            </div>
+                            <h2 class="text-2xl font-black text-white">${product.name}</h2>
+                            <p class="text-xs text-brand-silver">Marca: <strong class="text-white">${product.brand}</strong> | Moto: <strong class="text-brand-accent">${product.moto}</strong></p>
+                            <p class="text-sm text-gray-300 pt-2 leading-relaxed">${product.description}</p>
+                        </div>
+
+                        <div class="space-y-3.5 pt-4 border-t border-brand-border">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-brand-silver">Precio Exclusivo</span>
+                                <span class="text-3xl font-black text-brand-accent">$${product.price.toLocaleString('es-CO')}</span>
+                            </div>
+                            <button onclick="addToCart(${product.id}); closeProductDetailModal();" class="w-full py-3.5 bg-brand-accent text-black font-extrabold rounded-xl shadow-lg glow-cyan-sm hover:bg-brand-accentHover transition flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeProductDetailModal() {
+            document.getElementById('product-detail-modal').classList.add('hidden');
+        }
+
+        // --- ADMIN AUTHENTICATION (PASSWORD UPDATED) ---
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const u = document.getElementById('admin-user').value.trim();
+            const p = document.getElementById('admin-pass').value.trim();
+            const err = document.getElementById('login-error');
+
+            if (u === 'Bryan_Ra' && p === 'Bryan920510') {
+                state.isAdminAuth = true;
+                sessionStorage.setItem('velox_admin_auth', 'true');
+                err.classList.add('hidden');
+                updateAdminAuthUI();
+            } else {
+                err.classList.remove('hidden');
+            }
+        }
+
+        function handleAdminLogout() {
+            state.isAdminAuth = false;
+            sessionStorage.removeItem('velox_admin_auth');
+            updateAdminAuthUI();
+        }
+
+        function updateAdminAuthUI() {
+            const loginCard = document.getElementById('admin-login-card');
+            const panel = document.getElementById('admin-panel');
+
+            if (state.isAdminAuth) {
+                loginCard.classList.add('hidden');
+                panel.classList.remove('hidden');
+                renderAdminInventory();
+                renderOrders();
+                syncShippingAdminUI();
+            } else {
+                loginCard.classList.remove('hidden');
+                panel.classList.add('hidden');
+            }
+        }
+
+        function switchAdminSubTab(tab) {
+            state.activeAdminSubtab = tab;
+            const invSec = document.getElementById('admin-subtab-inventory');
+            const ordSec = document.getElementById('admin-subtab-orders');
+            const invBtn = document.getElementById('subtab-inventory-btn');
+            const ordBtn = document.getElementById('subtab-orders-btn');
+
+            if (tab === 'inventory') {
+                invSec.classList.remove('hidden');
+                ordSec.classList.add('hidden');
+                invBtn.className = "px-4 py-2.5 text-xs font-bold text-brand-accent border-b-2 border-brand-accent transition flex items-center gap-2";
+                ordBtn.className = "px-4 py-2.5 text-xs font-bold text-gray-400 hover:text-white transition flex items-center gap-2";
+            } else {
+                invSec.classList.add('hidden');
+                ordSec.classList.remove('hidden');
+                ordBtn.className = "px-4 py-2.5 text-xs font-bold text-brand-accent border-b-2 border-brand-accent transition flex items-center gap-2";
+                invBtn.className = "px-4 py-2.5 text-xs font-bold text-gray-400 hover:text-white transition flex items-center gap-2";
+            }
+        }
+
+        // --- ADMIN INVENTORY CRUD ---
+        function renderAdminInventory() {
+            const countEl = document.getElementById('admin-products-count');
+            if (countEl) countEl.innerText = state.products.length;
+
+            const tbody = document.getElementById('admin-inventory-table-body');
+            if (!tbody) return;
+
+            tbody.innerHTML = state.products.map(p => `
+                <tr class="hover:bg-slate-900/60 transition">
+                    <td class="p-3.5">
+                        <div class="flex items-center space-x-1.5">
+                            <img src="${p.img1}" class="w-10 h-10 object-cover rounded-xl border border-brand-border">
+                            <img src="${p.img2}" class="w-10 h-10 object-cover rounded-xl border border-brand-border">
+                        </div>
+                    </td>
+                    <td class="p-3.5 font-mono font-bold text-brand-accent">${p.sku}</td>
+                    <td class="p-3.5 font-bold text-white">${p.name}</td>
+                    <td class="p-3.5">${p.category}</td>
+                    <td class="p-3.5">${p.brand}</td>
+                    <td class="p-3.5 font-bold text-white">$${p.price.toLocaleString('es-CO')}</td>
+                    <td class="p-3.5 font-bold text-emerald-400">${p.stock !== undefined ? p.stock : 10} u</td>
+                    <td class="p-3.5 text-right space-x-2">
+                        <button onclick="openProductEditModal(${p.id})" class="px-3 py-1.5 bg-slate-800 text-brand-accent hover:bg-slate-700 rounded-xl text-xs font-bold">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </button>
+                        <button onclick="deleteProduct(${p.id})" class="px-3 py-1.5 bg-red-950/60 text-red-400 hover:bg-red-900 rounded-xl text-xs font-bold">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openProductEditModal(productId) {
+            const modal = document.getElementById('admin-product-modal');
+            const title = document.getElementById('admin-modal-title');
+            renderCategories();
+
+            if (productId) {
+                const p = state.products.find(x => x.id === productId);
+                if (!p) return;
+                title.innerText = `Editar Repuesto (${p.sku})`;
+                document.getElementById('edit-prod-id').value = p.id;
+                document.getElementById('edit-prod-sku').value = p.sku;
+                document.getElementById('edit-prod-cat').value = p.category;
+                document.getElementById('edit-prod-name').value = p.name;
+                document.getElementById('edit-prod-brand').value = p.brand;
+                document.getElementById('edit-prod-moto').value = p.moto || 'Pulsar NS 200';
+                document.getElementById('edit-prod-price').value = p.price;
+                document.getElementById('edit-prod-stock').value = p.stock !== undefined ? p.stock : 10;
+                document.getElementById('edit-prod-img1').value = p.img1;
+                document.getElementById('edit-prod-img2').value = p.img2;
+                document.getElementById('edit-prod-desc').value = p.description || '';
+            } else {
+                title.innerText = 'Crear Nuevo Repuesto';
+                document.getElementById('edit-prod-id').value = '';
+                document.getElementById('edit-prod-sku').value = 'VP-REF-' + Math.floor(100 + Math.random() * 900);
+                document.getElementById('edit-prod-name').value = '';
+                document.getElementById('edit-prod-brand').value = 'Velox Performance';
+                document.getElementById('edit-prod-moto').value = 'Pulsar NS 200';
+                document.getElementById('edit-prod-price').value = '';
+                document.getElementById('edit-prod-stock').value = '15';
+                document.getElementById('edit-prod-img1').value = 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80';
+                document.getElementById('edit-prod-img2').value = 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80';
+                document.getElementById('edit-prod-desc').value = '';
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeProductEditModal() {
+            document.getElementById('admin-product-modal').classList.add('hidden');
+        }
+
+        function handleProductFormSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('edit-prod-id').value;
+            const sku = document.getElementById('edit-prod-sku').value.trim();
+            const category = document.getElementById('edit-prod-cat').value;
+            const name = document.getElementById('edit-prod-name').value.trim();
+            const brand = document.getElementById('edit-prod-brand').value.trim();
+            const moto = document.getElementById('edit-prod-moto').value.trim();
+            const price = parseFloat(document.getElementById('edit-prod-price').value);
+            const stock = parseInt(document.getElementById('edit-prod-stock').value) || 0;
+            const img1 = document.getElementById('edit-prod-img1').value.trim();
+            const img2 = document.getElementById('edit-prod-img2').value.trim();
+            const description = document.getElementById('edit-prod-desc').value.trim();
+
+            if (id) {
+                const p = state.products.find(x => x.id === parseInt(id));
+                if (p) {
+                    p.sku = sku; p.category = category; p.name = name; p.brand = brand; p.moto = moto;
+                    p.price = price; p.stock = stock; p.img1 = img1; p.img2 = img2; p.description = description;
+                }
+            } else {
+                const newProd = {
+                    id: Date.now(),
+                    sku, category, name, brand, moto, price, stock,
+                    rating: 5.0, img1, img2, description
+                };
+                state.products.unshift(newProd);
+            }
+
+            localStorage.setItem('velox_products', JSON.stringify(state.products));
+            closeProductEditModal();
+            renderProducts();
+            renderAdminInventory();
+        }
+
+        function deleteProduct(id) {
+            if (confirm('¿Eliminar esta referencia del catálogo?')) {
+                state.products = state.products.filter(p => p.id !== id);
+                localStorage.setItem('velox_products', JSON.stringify(state.products));
+                renderProducts();
+                renderAdminInventory();
+            }
+        }
+
+        // --- ADMIN ORDERS & SHIPPING LABELS ---
+        function renderOrders() {
+            const countEl = document.getElementById('admin-orders-count');
+            if (countEl) countEl.innerText = state.orders.length;
+
+            const tbody = document.getElementById('admin-orders-table-body');
+            if (!tbody) return;
+
+            tbody.innerHTML = state.orders.map(o => `
+                <tr class="hover:bg-slate-900/60 transition">
+                    <td class="p-3.5 font-mono font-bold text-white">${o.id}</td>
+                    <td class="p-3.5">${o.date}</td>
+                    <td class="p-3.5 font-bold text-white">${o.customer.name}<br><span class="text-[10px] text-brand-silver">${o.customer.phone}</span></td>
+                    <td class="p-3.5">${o.customer.city}<br><span class="text-[10px] text-brand-silver">${o.customer.address}</span></td>
+                    <td class="p-3.5">${o.customer.payment}</td>
+                    <td class="p-3.5 font-bold text-brand-accent">$${o.total.toLocaleString('es-CO')}</td>
+                    <td class="p-3.5">
+                        <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-cyan-950 text-brand-accent border border-brand-accent/40">
+                            ${o.status}
+                        </span>
+                    </td>
+                    <td class="p-3.5 text-right">
+                        <button onclick="openShippingLabelModal('${o.id}')" class="px-3 py-1.5 bg-brand-accent text-black font-extrabold rounded-xl text-xs hover:bg-brand-accentHover transition flex items-center gap-1.5 ml-auto">
+                            <i class="fa-solid fa-qrcode"></i> Guía
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openShippingLabelModal(orderId) {
+            const order = state.orders.find(o => o.id === orderId);
+            if (!order) return;
+
+            const modal = document.getElementById('shipping-label-modal');
+            const container = document.getElementById('shipping-label-content');
+
+            container.innerHTML = `
+                <div class="border-2 border-slate-900 p-5 space-y-4 text-slate-900" id="print-label-area">
+                    <div class="flex justify-between items-center border-b-2 border-slate-900 pb-3">
+                        <div>
+                            <h2 class="text-xl font-black tracking-wider">VELOX PARTS</h2>
+                            <p class="text-[10px] uppercase font-bold text-slate-600">GUÍA DE DESPACHO & EMBALAJE</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-lg font-black font-mono">${order.id}</div>
+                            <div class="text-[10px] text-slate-500">${order.date}</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs border-b border-slate-300 pb-3">
+                        <div>
+                            <span class="text-[9px] font-extrabold uppercase text-slate-500 block">REMITENTE</span>
+                            <strong>VELOX PARTS S.A.S.</strong><br>
+                            Tel: 3115092400<br>
+                            Email: veloxparts@gamil.com
+                        </div>
+                        <div>
+                            <span class="text-[9px] font-extrabold uppercase text-slate-500 block">DESTINATARIO</span>
+                            <strong>${order.customer.name}</strong><br>
+                            Tel: ${order.customer.phone}<br>
+                            ${order.customer.address}<br>
+                            <strong>${order.customer.city}</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="text-[9px] font-extrabold uppercase text-slate-500 block mb-1">DETALLE DE EMBALAJE (PICKING)</span>
+                        <table class="w-full text-[11px] text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-400 font-bold">
+                                    <th class="py-1">SKU</th>
+                                    <th class="py-1">Repuesto</th>
+                                    <th class="py-1 text-center">Cant.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${order.items.map(i => `
+                                    <tr class="border-b border-slate-200">
+                                        <td class="py-1 font-mono font-bold">${i.sku}</td>
+                                        <td class="py-1">${i.name}</td>
+                                        <td class="py-1 text-center font-bold">${i.qty}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div id="qrcode-container" class="bg-white p-1 border border-slate-300"></div>
+                        <div class="text-right text-xs">
+                            <span class="text-[10px] text-slate-500 block">FORMA DE PAGO</span>
+                            <strong>${order.customer.payment}</strong>
+                            <div class="text-base font-black mt-1">$${order.total.toLocaleString('es-CO')}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+
+            setTimeout(() => {
+                const qrContainer = document.getElementById('qrcode-container');
+                if (qrContainer) {
+                    qrContainer.innerHTML = '';
+                    new QRCode(qrContainer, {
+                        text: `VELOX-PARTS:${order.id}:${order.customer.phone}:${order.total}`,
+                        width: 70,
+                        height: 70
+                    });
+                }
+            }, 50);
+        }
+
+        function closeShippingLabelModal() {
+            document.getElementById('shipping-label-modal').classList.add('hidden');
+        }
+
+        function printShippingLabel() {
+            const printContent = document.getElementById('print-label-area').innerHTML;
+            const win = window.open('', '', 'height=600,width=800');
+            win.document.write('<html><head><title>Imprimir Guía - Velox Parts</title>');
+            win.document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+            win.document.write('</head><body class="p-6">');
+            win.document.write(printContent);
+            win.document.write('</body></html>');
+            win.document.close();
+            setTimeout(() => { win.print(); }, 300);
+        }
+
+        // --- APP INITIALIZATION ---
+        // Reset cached products if needed or ensure defaults
+        if (!localStorage.getItem('velox_products')) {
+            localStorage.setItem('velox_products', JSON.stringify(INITIAL_PRODUCTS));
+        }
+        window.onload = function() {
+            renderCategories();
+            renderProducts();
+            renderCart();
+            updateWishlistBadge();
+            syncShippingAdminUI();
+            updateAdminAuthUI();
+        };
+    </script>
+</body>
+</html>
